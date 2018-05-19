@@ -1,0 +1,39 @@
+{
+	"index.html": {
+		"resources": [
+			"sub1.html"
+		],
+		"refer": [
+			"sub2.html",
+			"sub1.html",
+			"sub4.html",
+			"sub3.html"
+		]
+	},
+	"sub1.html": {
+		"refer": [
+			"chat.html"
+		]
+	},
+	"chat.html": {
+		"refer": [
+			"chat.html"
+		]
+	},
+	"sub3.html": {
+		"refer": [
+			"shake.html",
+			"moments.html",
+			"moments_head.html",
+			"scan.html"
+		]
+	},
+	"moments_head.html": {
+		"resources": [
+			"moments_list.html"
+		],
+		"refer": [
+			"moments_list.html"
+		]
+	}
+}

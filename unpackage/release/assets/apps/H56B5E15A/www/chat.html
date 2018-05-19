@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_657570_qbykybrjnibsatt9.css"/>
+    <script type="text/javascript" charset="utf-8">mui.init();</script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+
+<body>
+
+    <!-- 主页面容器 -->
+    <div class="mui-inner-wrap chat">
+        <!-- 主页面标题 -->
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title"></h1>
+		</header>
+		
+        <!-- 主页面内容容器 -->
+        <div class="mui-content mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <!-- 主界面具体展示内容 -->
+				<ul id="msg-box">
+					<!--<li class="my-msg"><img src="img/black_03.png"/><img class="portrait" src="img/black_03.png"/></li>-->
+				</ul>
+				
+			
+				
+            </div>
+        </div>
+        <footer>        	
+	     	<form id="chat-from" action="" method="post">
+	     		<span class="iconfont icon-sousuoxiawu-defuben"></span>
+	     		<input class="chat-text" type="text" value=""/>
+	     		<span class="iconfont icon-biaoqing1"></span>
+	     		<span class="mui-icon mui-icon-plus"></span>
+	     	</form>
+			<ul id="iconlist" class="mui-table-view mui-grid-view">
+				<li class="mui-table-view-cell mui-col-xs-3">
+					<span class="mui-icon mui-icon-image gallery"></span>
+					<p>照片</p>
+				</li>	
+	     		<li class="mui-table-view-cell mui-col-xs-3">
+	     			<span class="mui-icon mui-icon-camera camera"></span>
+	     			<p>拍摄</p>
+	     		</li>
+	     		<li class="mui-table-view-cell mui-col-xs-3">
+	     			<span class="mui-icon mui-icon-videocam videocam"></span>
+	     			<p>视频通话</p>
+	     		</li>
+	     		<li class="mui-table-view-cell mui-col-xs-3">
+	     			<span class="mui-icon mui-icon-location location"></span>
+	     			<p>位置</p>
+	     		</li>
+	     		<li class="mui-table-view-cell mui-col-xs-3">
+	     			<span class="mui-icon mui-icon-mic mic"></span>
+	     			<p>语音输入</p>
+	     		</li>
+	     		<li class="mui-table-view-cell mui-col-xs-3">
+	     			<span class="mui-icon mui-icon-person"></span>
+	     			<p>个人名片</p>
+	     		</li>
+	     		<li class="mui-table-view-cell mui-col-xs-3">
+	     			<span class="iconfont icon-weixinshoucang"></span>
+	     			<p>收藏</p>
+	     		</li>
+	     		<li class="mui-table-view-cell mui-col-xs-3">
+	     			<span class="iconfont icon-file-close"></span>
+	     			<p>文件</p>
+	     		</li>
+	     	</ul>
+        </footer>
+    </div>
+
+<script type="text/javascript">
+	mui.plusReady(function(){
+		var title = plus.webview.currentWebview().title;
+		var portrait = plus.webview.currentWebview().portrait;
+		document.querySelector(".mui-title").innerText = title;
+		//发图片
+		var msgBox = document.getElementById("msg-box");
+		mui('#iconlist').on('tap','.gallery',function(){
+			plus.gallery.pick(function(path){
+				var img = "";
+				for (var i in path.files){
+ 					//alert(path.files[0]);
+					img = "<li class=my-msg><img src="+ path.files[i] + "/></li>";
+					msgBox.innerHTML+=img;					
+				}
+			},function(err){
+				msgBox.innerHTML = err.message
+			},{
+				filter:"image",
+				multiple:true
+			})
+		});
+		//摄像头
+		mui('#iconlist').on('tap','.camera',function(){
+			var cam = plus.camera.getCamera(1);
+			cam.captureImage(function(path){
+				//alert(path);
+				var src = "file://" + plus.io.convertLocalFileSystemURL(path);
+				var img = "<li class=my-msg><img src="+ src + "/></li>";
+				msgBox.innerHTML += img;
+			})
+		})
+		
+	})
+	
+//	var btn = document.querySelector('.mui-icon-plus');
+//	btn.addEventListener('tap',function(){
+	mui('#chat-from').on('tap','.mui-icon-plus',function(){
+		document.activeElement.blur(); 
+		$('#iconlist').toggle();
+	})
+	$('.chat-text').focus(function(){
+		$('#iconlist').hide();
+	})
+	
+	mui('#msg-box').on('tap', 'img', function() {
+		$(this).toggleClass('active')
+	});
+
+
+</script>   
+</body>
+</html>

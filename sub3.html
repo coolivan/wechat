@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+
+<body>
+<div class="mui-content discover">
+	<ul class="mui-table-view peng-you-quan">
+		<li id="moments" class="mui-table-view-cell mui-media">
+			<a class="mui-navigate-right" href="javascript:;">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-pengyouquan"></use>
+				</svg>
+				朋友圈
+				<img class="mui-pull-right" src="img/goden_03.png"/>
+			</a>
+		</li>
+	</ul>
+	<ul class="mui-table-view">
+		<li id="scan" class="mui-table-view-cell mui-media">
+			<a class="mui-navigate-right" href="javascript:;">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-saoyisao"></use>
+				</svg>
+				扫一扫
+			</a>
+		</li>
+		<li id="shake" class="mui-table-view-cell mui-media">
+			<a class="mui-navigate-right" href="javascript:;">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-yaoyiyao"></use>
+				</svg>
+				摇一摇
+			</a>
+		</li>
+	</ul>
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell mui-media">
+			<a class="mui-navigate-right" href="javascript:;">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-kanyikan"></use>
+				</svg>
+				看一看
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a class="mui-navigate-right" href="javascript:;">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-souyisou"></use>
+				</svg>
+				搜一搜
+			</a>
+		</li>
+	</ul>
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell mui-media">
+			<a class="mui-navigate-right" href="javascript:;">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-fujinderen"></use>
+				</svg>
+				附近的人
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a class="mui-navigate-right" href="javascript:;">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-piaoliuping"></use>
+				</svg>
+				流流瓶
+			</a>
+		</li>
+	</ul>
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell mui-media">
+			<a class="mui-navigate-right" href="javascript:;">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-gouwu"></use>
+				</svg>
+				购物
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a class="mui-navigate-right" href="javascript:;">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-youxi"></use>
+				</svg>
+				游戏
+			</a>
+		</li>
+	</ul>
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell mui-media">
+			<a class="mui-navigate-right" href="javascript:;">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-xiaochengxu"></use>
+				</svg>
+				小程序
+			</a>
+		</li>
+	</ul>
+</div>
+
+<script src="js/iconfont.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	mui('#shake').on('tap','a',function(){
+		mui.openWindow({
+			url:'shake.html',
+			id:'shake',
+			style:{},
+			extras:{
+				
+			},
+			show:{
+				autoShow:true,
+				aniShow:'slide-in-right',
+				duration:100
+			},
+			waiting:{
+				autoShow:true,
+				titile:'loading...',
+				options:{}
+			}
+		
+		})
+	})
+	mui('#moments').on('tap','a',function(){
+		mui.openWindow({
+			url:'moments_head.html',
+			id:'moments_head'		
+		})
+	})
+	mui('#scan').on('tap','a',function(){
+		mui.openWindow({
+			url:'scan.html',
+			id:'scan'
+		})
+	})
+</script>
+</body>
+</html>

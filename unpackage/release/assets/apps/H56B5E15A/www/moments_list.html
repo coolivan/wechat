@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_657570_qbykybrjnibsatt9.css" />
+
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+
+		<!-- 主页面容器 -->
+		<div class="mui-inner-wrap moments">
+			<!--下拉刷新容器-->
+			<div id="refreshContainer" class="mui-content mui-scroll-wrapper moments">
+				<div class="mui-scroll">
+
+					<div class="main">
+						<div class="banner"></div>
+						<div class="inner">
+							<div class="my-name">Cool Ivan</div>
+							<div class="portrait">
+								<img src="img/black_03.png" />
+							</div>
+						</div>
+					</div>
+					<!--数据列表-->
+					<ul class="mui-table-view mui-table-view-chevron moments-list">
+						<li class="mui-table-view-cell mui-media">
+							<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+							<div class="mui-media-body">
+								<span>幸福</span>
+								<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+								<small>6小时前</small>
+							</div>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+							<div class="mui-media-body">
+								<span>木屋</span>
+								<p>想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+								<small>6小时前</small>
+							</div>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+							<div class="mui-media-body">
+								<span>CBD</span>
+								<p>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+								<div class="img-box">
+									<img src="img/black_03.png" />
+									<img src="img/black_03.png" />
+								</div>
+								<small>6小时前</small>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				pullRefresh: {
+					container: "#refreshContainer", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+					down: {
+						callback: pulldownRefresh, //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					},
+					up: {
+						contentdown: "",
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: pullupRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}
+			})
+
+			function pulldownRefresh() {
+				setTimeout(function() {
+					var ul = document.querySelector(".moments-list");
+					for(let i = 0; i < 3; i++) {
+						var li = document.createElement("li");
+						li.className = 'mui-table-view-cell mui-media';
+						var str = "";
+						str = `<img class='mui-media-object mui-pull-left' src='http://placehold.it/40x30'>
+			            <div class='mui-media-body'>
+			                <span>刚刚${i}</span>
+			                <p>新加载新加载新加载新加载新加载新加载新加载.</p>
+			                <small>刚刚</small>
+			            </div>`;
+
+						li.innerHTML = str;
+
+						ul.insertBefore(li, ul.firstChild);
+
+					}
+					mui('#refreshContainer').pullRefresh().endPulldown();
+				}, 1500)
+			}
+
+			function pullupRefresh() {
+				setTimeout(function() {
+					var ul = document.querySelector(".moments-list");
+					for(let i = 0; i < 3; i++) {
+						var li = document.createElement("li");
+						li.className = 'mui-table-view-cell mui-media';
+						var str = "";
+						str = `<img class='mui-media-object mui-pull-left' src='http://placehold.it/40x30'>
+			            <div class='mui-media-body'>
+			                <span>之前${i}</span>
+			                <p>新加载新加载新加载新加载新加载新加载新加载.</p>
+			                <small>6分钟之前</small>
+			            </div>`;
+
+						li.innerHTML = str;
+
+						ul.append(li);
+
+					}
+					mui('#refreshContainer').pullRefresh().endPullup();
+				}, 1500)
+
+			}
+
+		</script>
+	</body>
+
+</html>
